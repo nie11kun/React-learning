@@ -48,7 +48,12 @@ const el7 = {
 }
 
 const tick = () => {
-    const element = <h1>{new Date().toLocaleTimeString()}</h1>;
+    const element = (
+        <div>
+            <h1>hello world</h1>
+            <h2>{new Date().toLocaleTimeString()}</h2>
+        </div>
+    );
 
     ReactDOM.render(
         element,
