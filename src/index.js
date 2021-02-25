@@ -1,52 +1,23 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 
-function FormattedDate(props) {
-    return (
-        <h2>it is: {props.date.toLocaleTimeString()}</h2>
-    )
-}
-
-class Clock extends React.Component {
+class Link extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { date: new Date() }
-        this.tick = this.tick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
-
-    componentDidMount() {
-        this.timerID = setInterval(this.tick, 1000);
+    handleClick(e) {
+        e.preventDefault();
+        console.log('clicked me');
     }
-
-    componentWillUnmount() {
-        clearInterval(this.timerID);
-    }
-
-    tick() {
-        this.setState({ date: new Date() });
-    }
-
     render() {
         return (
-            <div>
-                <h1>hello world</h1>
-                <FormattedDate date={this.state.date} />
-            </div>
-        );
+            <a href='#' onClick={this.handleClick}>click me</a>
+        )
     }
-}
-
-function App() {
-    return (
-        <div>
-            <Clock />
-            <Clock />
-            <Clock />
-        </div>
-    );
 }
 
 ReactDOM.render(
-    <App />,
+    <Link />,
     document.getElementById('root')
 );
