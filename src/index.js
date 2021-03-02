@@ -1,23 +1,40 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 
-class Toggle extends React.Component {
+const WarningBanner = (props) => {
+    if (!props.warn) {
+        return null;
+    }
+    return (
+        <div className='warning'>
+            warning!
+        </div>
+    );
+}
+
+class Page extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { isToggleOn: true };
-        //this.handleClick = this.handleClick.bind(this);
+        this.state = { showWarning: true };
+        this.handelToggleClick = this.handelToggleClick.bind(this);
     }
-    handleClick(a, e) {
-        this.setState({ isToggleOn: !this.state.isToggleOn });
-        console.log(e._reactName);
-        console.log(a);
+    handelToggleClick() {
+        this.setState({ showWarning: !this.state.showWarning });
     }
+
     render() {
-        return (<button onClick={this.handleClick.bind(this, 'aaa')} > { this.state.isToggleOn ? 'ON' : 'OFF'} </button>);
+        return (
+            <div>
+                <WarningBanner warn={this.state.showWarning} />
+                <button onClick={this.handelToggleClick}>
+                    {this.state.showWarning ? 'hide' : 'show'}
+                </button>
+            </div>
+        );
     }
 }
 
-ReactDOM.render(<
-    Toggle />,
+ReactDOM.render(
+    <Page />,
     document.getElementById('root')
 );
